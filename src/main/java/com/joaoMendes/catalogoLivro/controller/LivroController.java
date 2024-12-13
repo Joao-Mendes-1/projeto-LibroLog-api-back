@@ -30,7 +30,7 @@ public class LivroController {
         livro.setImagem(request.getImagem());
 
         Livro savedLivro = service.create(livro);
-        LivroDetailResponse response = new LivroDetailResponse(savedLivro.getNome(), savedLivro.getAutor(), savedLivro.getAno(), savedLivro.getGenero(), savedLivro.getImagem());
+        LivroDetailResponse response = new LivroDetailResponse(savedLivro.getId(), savedLivro.getNome(), savedLivro.getAutor(), savedLivro.getAno(), savedLivro.getGenero(), savedLivro.getImagem());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -44,7 +44,7 @@ public class LivroController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<LivroDetailResponse> getId(@PathVariable Long id) {
         Livro livro = service.getId(id);
-        LivroDetailResponse response = new LivroDetailResponse(livro.getNome(), livro.getAutor(), livro.getAno(), livro.getGenero(), livro.getImagem());
+        LivroDetailResponse response = new LivroDetailResponse(livro.getId(), livro.getNome(), livro.getAutor(), livro.getAno(), livro.getGenero(), livro.getImagem());
         return ResponseEntity.ok().body(response);
     }
 
@@ -52,7 +52,7 @@ public class LivroController {
     public ResponseEntity<List<LivroSumarioResponse>> getAll() {
         List<Livro> livros = service.getAll();
         List<LivroSumarioResponse> response = livros.stream()
-                .map(livro -> new LivroSumarioResponse(livro.getId(), livro.getNome(), livro.getAutor()))  // Agora inclui o id
+                .map(livro -> new LivroSumarioResponse(livro.getId(), livro.getNome(), livro.getImagem()))  // Incluindo id, nome e imagem
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(response);
     }
@@ -68,7 +68,7 @@ public class LivroController {
         livro.setImagem(request.getImagem());
 
         Livro updatedLivro = service.update(livro);
-        LivroDetailResponse response = new LivroDetailResponse(updatedLivro.getNome(), updatedLivro.getAutor(), updatedLivro.getAno(), updatedLivro.getGenero(), updatedLivro.getImagem());
+        LivroDetailResponse response = new LivroDetailResponse(updatedLivro.getId(), updatedLivro.getNome(), updatedLivro.getAutor(), updatedLivro.getAno(), updatedLivro.getGenero(), updatedLivro.getImagem());
 
         return ResponseEntity.ok().body(response);
     }

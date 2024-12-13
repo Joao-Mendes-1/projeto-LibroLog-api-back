@@ -15,6 +15,6 @@ public class LivroSumarioResponse {
     @JsonProperty("nome")
     private String nome;
 
-    @JsonProperty("autor")
-    private String autor;
+    @JsonProperty("imagem")
+    private String imagem;
 }
