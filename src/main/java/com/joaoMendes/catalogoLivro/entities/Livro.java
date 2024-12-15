@@ -1,6 +1,7 @@
 package com.joaoMendes.catalogoLivro.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.micrometer.common.KeyValues;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class Livro implements Serializable {
     private String genero;
     @JsonProperty("imagem")
     private String imagem;
+
 
     // Getters e Setters gerados pelo Lombok
 }
