@@ -1,4 +1,4 @@
-package com.joaoMendes.catalogoLivro.request;
+package com.joaoMendes.catalogolivro.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class LivroRequest {
+public class LivroResponse {
 
     @JsonProperty("nome")
     private String nome;

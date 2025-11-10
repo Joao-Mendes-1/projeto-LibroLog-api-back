@@ -1,4 +1,4 @@
-package com.joaoMendes.catalogoLivro.response;
+package com.joaoMendes.catalogolivro.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -27,5 +27,5 @@ public class LivroDetailResponse {
     @JsonProperty("imagem")
     private String imagem;
 
-    // Construtor atualizado para incluir o id
+
 }

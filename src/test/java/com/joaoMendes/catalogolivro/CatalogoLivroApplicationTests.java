@@ -1,4 +1,4 @@
-package com.joaoMendes.catalogoLivro;
+package com.joaoMendes.catalogolivro;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -102,8 +102,8 @@ Este é o repositório do backend do **LibroLog**, responsável por gerenciar as
 │       │               ├── createdFiles.lst
 │       │               └── inputFiles.lst
 │       ├── surefire-reports
-│       │   ├── com.joaoMendes.catalogoLivro.CatalogoLivroApplicationTests.txt
-│       │   └── TEST-com.joaoMendes.catalogoLivro.CatalogoLivroApplicationTests.xml
+│       │   ├── com.joaoMendes.catalogolivro.CatalogoLivroApplicationTests.txt
+│       │   └── TEST-com.joaoMendes.catalogolivro.CatalogoLivroApplicationTests.xml
 │       └── test-classes
 │           └── com
 │               └── joaoMendes

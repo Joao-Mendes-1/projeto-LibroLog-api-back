@@ -1,6 +1,6 @@
-package com.joaoMendes.catalogoLivro.repository;
+package com.joaoMendes.catalogolivro.repository;
 
-import com.joaoMendes.catalogoLivro.entities.Livro;
+import com.joaoMendes.catalogolivro.entities.Livro;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

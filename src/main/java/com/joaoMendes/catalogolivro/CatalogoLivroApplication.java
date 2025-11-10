@@ -1,4 +1,4 @@
-package com.joaoMendes.catalogoLivro;
+package com.joaoMendes.catalogolivro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

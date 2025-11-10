@@ -1,10 +1,10 @@
-package com.joaoMendes.catalogoLivro.request;
+package com.joaoMendes.catalogolivro.request;
 
 public class LivroFiltroRequest {
 
     private String genero;
 
-    // Getter e Setter
+
     public String getGenero() {
         return genero;
     }

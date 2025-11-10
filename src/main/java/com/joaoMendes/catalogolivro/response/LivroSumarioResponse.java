@@ -1,4 +1,4 @@
-package com.joaoMendes.catalogoLivro.response;
+package com.joaoMendes.catalogolivro.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
