@@ -1,6 +1,6 @@
 package com.joaoMendes.catalogolivro.mapper;
 
-import com.joaoMendes.catalogolivro.entities.Livro;
+import com.joaoMendes.catalogolivro.domain.entities.Livro;
 import com.joaoMendes.catalogolivro.request.LivroRequest;
 import com.joaoMendes.catalogolivro.response.LivroDetailResponse;
 import com.joaoMendes.catalogolivro.response.LivroResponseGenero;

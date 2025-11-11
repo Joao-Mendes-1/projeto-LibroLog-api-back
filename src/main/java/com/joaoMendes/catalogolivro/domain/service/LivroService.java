@@ -1,6 +1,7 @@
 package com.joaoMendes.catalogolivro.domain.service;
 
 import com.joaoMendes.catalogolivro.domain.entities.Livro;
+import com.joaoMendes.catalogolivro.domain.exception.DomainException;
 import com.joaoMendes.catalogolivro.domain.repository.LivroRepository;
 import com.joaoMendes.catalogolivro.request.LivroFiltroRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class LivroService {
     public Livro update(Livro obj) {
         Optional<Livro> optionalLivro = repository.findById(obj.getId());
         if (optionalLivro.isEmpty()) {
-            throw new RuntimeException("Livro com ID " + obj.getId() + " não encontrado.");
+            throw new DomainException("Livro com ID " + obj.getId() + " não encontrado.");
         }
 
         Livro livroExistente = optionalLivro.get();
@@ -56,7 +57,7 @@ public class LivroService {
 
     public Livro getId(Long id) {
         return repository.findById(id).orElseThrow(() ->
-                new RuntimeException("Livro não encontrado com ID: " + id));
+                new DomainException("Livro não encontrado com ID: " + id));
     }
 
     public List<Livro> filterByGenero(LivroFiltroRequest filtroRequest) {
