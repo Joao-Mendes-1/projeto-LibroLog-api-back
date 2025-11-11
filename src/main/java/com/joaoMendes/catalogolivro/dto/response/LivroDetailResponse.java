@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 public class LivroDetailResponse {
 
-    @JsonProperty("id")  // Adicionando o campo id
+    @JsonProperty("id")
     private Long id;
 
     @JsonProperty("nome")

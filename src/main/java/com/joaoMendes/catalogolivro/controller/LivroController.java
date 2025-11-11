@@ -8,6 +8,7 @@ import com.joaoMendes.catalogolivro.response.LivroSumarioResponse;
 import com.joaoMendes.catalogolivro.response.LivroDetailResponse;
 import com.joaoMendes.catalogolivro.service.LivroService;
 import com.joaoMendes.catalogolivro.entities.Livro;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class LivroController {
     private LivroMapper mapper;
 
     @PostMapping
-    public ResponseEntity<LivroDetailResponse> create(@RequestBody LivroRequest request) {
+    public ResponseEntity<LivroDetailResponse> create(@Valid @RequestBody LivroRequest request) {
 
         Livro livro = mapper.toEntity(request);
 
@@ -68,7 +69,7 @@ public class LivroController {
 
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<LivroDetailResponse> update(@PathVariable Long id, @RequestBody LivroRequest request) {
+    public ResponseEntity<LivroDetailResponse> update(@PathVariable Long id, @RequestBody @Valid LivroRequest request) {
 
         Livro livro = mapper.toEntity(request);
         livro.setId(id);

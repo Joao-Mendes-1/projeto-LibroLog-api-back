@@ -29,16 +29,14 @@ public class LivroService {
     }
 
     public Livro update(Livro obj) {
-        // Verifica se o livro já existe no banco de dados
         Optional<Livro> optionalLivro = repository.findById(obj.getId());
         if (optionalLivro.isEmpty()) {
-            // Lança uma exceção se o livro não for encontrado
             throw new RuntimeException("Livro com ID " + obj.getId() + " não encontrado.");
         }
-        // Obtém o livro existente e atualiza os dados
+
         Livro livroExistente = optionalLivro.get();
         updateLivro(livroExistente, obj);
-        return repository.save(livroExistente); // Salva o livro atualizado
+        return repository.save(livroExistente);
     }
 
     private void updateLivro(Livro livroExistente, Livro obj) {

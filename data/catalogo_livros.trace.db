@@ -1,0 +1,3 @@
+2025-11-10 23:04:43.993656-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NOME CHARACTER VARYING(255)": "'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... (346)"; SQL statement:
+insert into tb_livro (ano,autor,genero,imagem,nome,id) values (?,?,?,?,?,default) [22001-232]
