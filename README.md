@@ -12,107 +12,81 @@ Este é o repositório do backend do **LibroLog**, responsável por gerenciar as
 
 ## Estrutura do Projeto
 ```
-├── catalogoLivro
-│   ├── data
-│   │   └── catalogo_livros.mv.db
-│   ├── HELP.md
-│   ├── mvnw
-│   ├── mvnw.cmd
-│   ├── pom.xml
-│   ├── src
-│   │   ├── main
-│   │   │   ├── java
-│   │   │   │   └── com
-│   │   │   │       └── joaoMendes
-│   │   │   │           └── catalogoLivro
-│   │   │   │               ├── CatalogoLivroApplication.java
-│   │   │   │               ├── controller
-│   │   │   │               │   └── LivroController.java
-│   │   │   │               ├── entities
-│   │   │   │               │   └── Livro.java
-│   │   │   │               ├── mapper
-│   │   │   │               │   └── LivroMapper.java
-│   │   │   │               ├── repository
-│   │   │   │               │   └── LivroRepository.java
-│   │   │   │               ├── request
-│   │   │   │               │   ├── LivroFiltroRequest.java
-│   │   │   │               │   └── LivroRequest.java
-│   │   │   │               ├── response
-│   │   │   │               │   ├── LivroDetailResponse.java
-│   │   │   │               │   ├── LivroFiltroResponse.java
-│   │   │   │               │   ├── LivroResponseGenero.java
-│   │   │   │               │   ├── LivroResponse.java
-│   │   │   │               │   └── LivroSumarioResponse.java
-│   │   │   │               ├── service
-│   │   │   │               │   └── LivroService.java
-│   │   │   │               └── WebConfig.java
-│   │   │   └── resources
-│   │   │       ├── application.properties
-│   │   │       ├── static
-│   │   │       └── templates
-│   │   └── test
-│   │       └── java
-│   │           └── com
-│   │               └── joaoMendes
-│   │                   └── catalogoLivro
-│   │                       └── CatalogoLivroApplicationTests.java
-│   └── target
-│       ├── catalogoLivro-0.0.1-SNAPSHOT.jar
-│       ├── catalogoLivro-0.0.1-SNAPSHOT.jar.original
-│       ├── classes
-│       │   ├── application.properties
-│       │   └── com
-│       │       └── joaoMendes
-│       │           └── catalogoLivro
-│       │               ├── CatalogoLivroApplication.class
-│       │               ├── controller
-│       │               │   └── LivroController.class
-│       │               ├── entities
-│       │               │   └── Livro.class
-│       │               ├── mapper
-│       │               │   └── LivroMapper.class
-│       │               ├── repository
-│       │               │   └── LivroRepository.class
-│       │               ├── request
-│       │               │   ├── LivroFiltroRequest.class
-│       │               │   └── LivroRequest.class
-│       │               ├── response
-│       │               │   ├── LivroDetailResponse.class
-│       │               │   ├── LivroFiltroResponse.class
-│       │               │   ├── LivroResponse.class
-│       │               │   ├── LivroResponseGenero.class
-│       │               │   └── LivroSumarioResponse.class
-│       │               ├── service
-│       │               │   └── LivroService.class
-│       │               └── WebConfig.class
-│       ├── generated-sources
-│       │   └── annotations
-│       ├── generated-test-sources
-│       │   └── test-annotations
-│       ├── maven-archiver
-│       │   └── pom.properties
-│       ├── maven-status
-│       │   └── maven-compiler-plugin
-│       │       ├── compile
-│       │       │   └── default-compile
-│       │       │       ├── createdFiles.lst
-│       │       │       └── inputFiles.lst
-│       │       └── testCompile
-│       │           └── default-testCompile
-│       │               ├── createdFiles.lst
-│       │               └── inputFiles.lst
-│       ├── surefire-reports
-│       │   ├── com.joaoMendes.catalogolivro.CatalogoLivroApplicationTests.txt
-│       │   └── TEST-com.joaoMendes.catalogolivro.CatalogoLivroApplicationTests.xml
-│       └── test-classes
+├── data
+│   ├── catalogo_livros.mv.db
+│   └── catalogo_livros.trace.db
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── README.md
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── joaoMendes
+│   │   │           └── catalogolivro
+│   │   │               ├── CatalogoLivroApplication.java
+│   │   │               ├── controller
+│   │   │               │   └── LivroController.java
+│   │   │               ├── domain
+│   │   │               │   ├── entities
+│   │   │               │   │   └── Livro.java
+│   │   │               │   ├── repository
+│   │   │               │   │   └── LivroRepository.java
+│   │   │               │   └── service
+│   │   │               │       └── LivroService.java
+│   │   │               ├── dto
+│   │   │               │   ├── request
+│   │   │               │   │   ├── LivroFiltroRequest.java
+│   │   │               │   │   └── LivroRequest.java
+│   │   │               │   └── response
+│   │   │               │       ├── LivroDetailResponse.java
+│   │   │               │       ├── LivroFiltroResponse.java
+│   │   │               │       ├── LivroResponseGenero.java
+│   │   │               │       ├── LivroResponse.java
+│   │   │               │       └── LivroSumarioResponse.java
+│   │   │               ├── mapper
+│   │   │               │   └── LivroMapper.java
+│   │   │               └── WebConfig.java
+│   │   └── resources
+│   │       └── application.properties
+│   └── test
+│       └── java
 │           └── com
 │               └── joaoMendes
-│                   └── catalogoLivro
-│                       └── CatalogoLivroApplicationTests.class
-├── catalogoLivro.zip
-└── data
-    ├── catalogo_livros.mv.db
-    └── catalogo_livros.trace.db
+│                   └── catalogolivro
+│                       └── CatalogoLivroApplicationTests.java
+└── target
+    ├── classes
+    │   ├── application.properties
+    │   └── com
+    │       └── joaoMendes
+    │           └── catalogolivro
+    │               ├── CatalogoLivroApplication.class
+    │               ├── controller
+    │               │   └── LivroController.class
+    │               ├── entities
+    │               │   └── Livro.class
+    │               ├── mapper
+    │               │   └── LivroMapper.class
+    │               ├── repository
+    │               │   └── LivroRepository.class
+    │               ├── request
+    │               │   ├── LivroFiltroRequest.class
+    │               │   └── LivroRequest.class
+    │               ├── response
+    │               │   ├── LivroDetailResponse.class
+    │               │   ├── LivroFiltroResponse.class
+    │               │   ├── LivroResponse.class
+    │               │   ├── LivroResponseGenero.class
+    │               │   └── LivroSumarioResponse.class
+    │               ├── service
+    │               │   └── LivroService.class
+    │               └── WebConfig.class
+    └── generated-sources
+        └── annotations
+
+
 
 ```
 ## Pré-requisitos
