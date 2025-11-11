@@ -1,4 +1,4 @@
-package com.joaoMendes.catalogolivro.entities;
+package com.joaoMendes.catalogolivro.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
