@@ -2,10 +2,14 @@ package com.joaoMendes.catalogolivro.domain.service;
 
 import com.joaoMendes.catalogolivro.domain.entities.Livro;
 import com.joaoMendes.catalogolivro.domain.exception.DomainException;
+import com.joaoMendes.catalogolivro.domain.exception.LivroNotFoundException;
 import com.joaoMendes.catalogolivro.domain.repository.LivroRepository;
 import com.joaoMendes.catalogolivro.request.LivroFiltroRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
 import java.util.stream.Collectors;
 
 import java.util.List;
@@ -26,13 +30,13 @@ public class LivroService {
     }
 
     public List<Livro> getAll(){
-        return repository.findAll(); // Retorna todos os livros cadastrados
+        return repository.findAll();
     }
 
     public Livro update(Livro obj) {
         Optional<Livro> optionalLivro = repository.findById(obj.getId());
         if (optionalLivro.isEmpty()) {
-            throw new DomainException("Livro com ID " + obj.getId() + " não encontrado.");
+            throw new LivroNotFoundException(obj.getId());
         }
 
         Livro livroExistente = optionalLivro.get();
@@ -57,7 +61,7 @@ public class LivroService {
 
     public Livro getId(Long id) {
         return repository.findById(id).orElseThrow(() ->
-                new DomainException("Livro não encontrado com ID: " + id));
+                new LivroNotFoundException(id));
     }
 
     public List<Livro> filterByGenero(LivroFiltroRequest filtroRequest) {
@@ -68,4 +72,5 @@ public class LivroService {
 
         return repository.findByGenero(genero);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.joaoMendes.catalogolivro.controller;
 
+import com.joaoMendes.catalogolivro.domain.exception.DomainException;
 import com.joaoMendes.catalogolivro.mapper.LivroMapper;
 import com.joaoMendes.catalogolivro.request.LivroFiltroRequest;
 import com.joaoMendes.catalogolivro.request.LivroRequest;
@@ -106,4 +107,5 @@ public class LivroController {
 
         return ResponseEntity.ok().body(response);
     }
+
 }
