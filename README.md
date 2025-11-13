@@ -13,7 +13,6 @@ Este é o repositório do backend do **LibroLog**, responsável por gerenciar as
 ## Estrutura do Projeto
 ```
 ├── data
-│   ├── catalogo_livros.mv.db
 │   └── catalogo_livros.trace.db
 ├── mvnw
 ├── mvnw.cmd
@@ -31,6 +30,9 @@ Este é o repositório do backend do **LibroLog**, responsável por gerenciar as
 │   │   │               ├── domain
 │   │   │               │   ├── entities
 │   │   │               │   │   └── Livro.java
+│   │   │               │   ├── exception
+│   │   │               │   │   ├── DomainException.java
+│   │   │               │   │   └── LivroNotFoundException.java
 │   │   │               │   ├── repository
 │   │   │               │   │   └── LivroRepository.java
 │   │   │               │   └── service
@@ -45,6 +47,9 @@ Este é o repositório do backend do **LibroLog**, responsável por gerenciar as
 │   │   │               │       ├── LivroResponseGenero.java
 │   │   │               │       ├── LivroResponse.java
 │   │   │               │       └── LivroSumarioResponse.java
+│   │   │               ├── exceptionhandler
+│   │   │               │   ├── ApiErrorResponse.java
+│   │   │               │   └── ApiExceptionHandler.java
 │   │   │               ├── mapper
 │   │   │               │   └── LivroMapper.java
 │   │   │               └── WebConfig.java
@@ -55,7 +60,10 @@ Este é o repositório do backend do **LibroLog**, responsável por gerenciar as
 │           └── com
 │               └── joaoMendes
 │                   └── catalogolivro
-│                       └── CatalogoLivroApplicationTests.java
+│                       ├── CatalogoLivroApplicationTests.java
+│                       └── domain
+│                           └── service
+│                               └── LivroServiceTest.java
 └── target
     ├── classes
     │   ├── application.properties
@@ -65,28 +73,46 @@ Este é o repositório do backend do **LibroLog**, responsável por gerenciar as
     │               ├── CatalogoLivroApplication.class
     │               ├── controller
     │               │   └── LivroController.class
-    │               ├── entities
-    │               │   └── Livro.class
+    │               ├── domain
+    │               │   ├── entities
+    │               │   │   └── Livro.class
+    │               │   ├── exception
+    │               │   │   ├── DomainException$ValidationException.class
+    │               │   │   ├── DomainException.class
+    │               │   │   └── LivroNotFoundException.class
+    │               │   ├── repository
+    │               │   │   └── LivroRepository.class
+    │               │   └── service
+    │               │       └── LivroService.class
+    │               ├── dto
+    │               │   ├── request
+    │               │   │   ├── LivroFiltroRequest.class
+    │               │   │   └── LivroRequest.class
+    │               │   └── response
+    │               │       ├── LivroDetailResponse.class
+    │               │       ├── LivroFiltroResponse.class
+    │               │       ├── LivroResponse.class
+    │               │       ├── LivroResponseGenero.class
+    │               │       └── LivroSumarioResponse.class
+    │               ├── exceptionhandler
+    │               │   ├── ApiErrorResponse$FieldErrorResponse.class
+    │               │   ├── ApiErrorResponse.class
+    │               │   └── ApiExceptionHandler.class
     │               ├── mapper
     │               │   └── LivroMapper.class
-    │               ├── repository
-    │               │   └── LivroRepository.class
-    │               ├── request
-    │               │   ├── LivroFiltroRequest.class
-    │               │   └── LivroRequest.class
-    │               ├── response
-    │               │   ├── LivroDetailResponse.class
-    │               │   ├── LivroFiltroResponse.class
-    │               │   ├── LivroResponse.class
-    │               │   ├── LivroResponseGenero.class
-    │               │   └── LivroSumarioResponse.class
-    │               ├── service
-    │               │   └── LivroService.class
     │               └── WebConfig.class
-    └── generated-sources
-        └── annotations
-
-
+    ├── generated-sources
+    │   └── annotations
+    ├── generated-test-sources
+    │   └── test-annotations
+    └── test-classes
+        └── com
+            └── joaoMendes
+                └── catalogolivro
+                    ├── CatalogoLivroApplicationTests.class
+                    └── domain
+                        └── service
+                            └── LivroServiceTest.class
 
 ```
 ## Pré-requisitos
