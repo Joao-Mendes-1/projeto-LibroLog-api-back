@@ -1,10 +1,10 @@
 package com.joaoMendes.catalogolivro.mapper;
 
 import com.joaoMendes.catalogolivro.domain.entities.Livro;
-import com.joaoMendes.catalogolivro.request.LivroRequest;
-import com.joaoMendes.catalogolivro.response.LivroDetailResponse;
-import com.joaoMendes.catalogolivro.response.LivroResponseGenero;
-import com.joaoMendes.catalogolivro.response.LivroSumarioResponse;
+import com.joaoMendes.catalogolivro.dto.request.LivroRequest;
+import com.joaoMendes.catalogolivro.dto.response.LivroDetailResponse;
+import com.joaoMendes.catalogolivro.dto.response.LivroResponseGenero;
+import com.joaoMendes.catalogolivro.dto.response.LivroSumarioResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

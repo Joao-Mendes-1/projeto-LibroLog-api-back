@@ -2,7 +2,6 @@ package com.joaoMendes.catalogolivro.exceptionhandler;
 
 import com.joaoMendes.catalogolivro.domain.exception.DomainException;
 import com.joaoMendes.catalogolivro.domain.exception.LivroNotFoundException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,7 +15,7 @@ import java.time.OffsetDateTime;
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(DomainException.class)
-    public ResponseEntity<String> capturar(DomainException e){
+    public ResponseEntity<String> capture(DomainException e){
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 

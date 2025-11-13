@@ -3,7 +3,7 @@ package com.joaoMendes.catalogolivro.domain.service;
 import com.joaoMendes.catalogolivro.domain.entities.Livro;
 import com.joaoMendes.catalogolivro.domain.exception.LivroNotFoundException;
 import com.joaoMendes.catalogolivro.domain.repository.LivroRepository;
-import com.joaoMendes.catalogolivro.request.LivroFiltroRequest;
+import com.joaoMendes.catalogolivro.dto.request.LivroFiltroRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

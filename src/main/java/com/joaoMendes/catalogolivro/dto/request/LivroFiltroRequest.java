@@ -1,4 +1,4 @@
-package com.joaoMendes.catalogolivro.request;
+package com.joaoMendes.catalogolivro.dto.request;
 
 public class LivroFiltroRequest {
 

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
