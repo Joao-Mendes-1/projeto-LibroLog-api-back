@@ -1,4 +1,4 @@
-package com.joaoMendes.catalogolivro.response;
+package com.joaoMendes.catalogolivro.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

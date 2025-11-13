@@ -1,12 +1,11 @@
 package com.joaoMendes.catalogolivro.controller;
 
-import com.joaoMendes.catalogolivro.domain.exception.DomainException;
 import com.joaoMendes.catalogolivro.mapper.LivroMapper;
-import com.joaoMendes.catalogolivro.request.LivroFiltroRequest;
-import com.joaoMendes.catalogolivro.request.LivroRequest;
-import com.joaoMendes.catalogolivro.response.LivroResponseGenero;
-import com.joaoMendes.catalogolivro.response.LivroSumarioResponse;
-import com.joaoMendes.catalogolivro.response.LivroDetailResponse;
+import com.joaoMendes.catalogolivro.dto.request.LivroFiltroRequest;
+import com.joaoMendes.catalogolivro.dto.request.LivroRequest;
+import com.joaoMendes.catalogolivro.dto.response.LivroResponseGenero;
+import com.joaoMendes.catalogolivro.dto.response.LivroSumarioResponse;
+import com.joaoMendes.catalogolivro.dto.response.LivroDetailResponse;
 import com.joaoMendes.catalogolivro.domain.service.LivroService;
 import com.joaoMendes.catalogolivro.domain.entities.Livro;
 import jakarta.validation.Valid;
