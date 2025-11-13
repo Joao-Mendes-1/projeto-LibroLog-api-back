@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LivroServiceTest {
 
-    @Test
-    void create() {
-    }
+
+
+
 
     @Test
     void update() {
