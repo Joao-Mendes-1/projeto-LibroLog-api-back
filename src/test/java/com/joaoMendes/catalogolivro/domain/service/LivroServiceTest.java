@@ -28,10 +28,10 @@ class LivroServiceTest {
     @Test
     void deveAtualizarLivroQuandoExiste() {
 
-        Livro existingBook = new Livro(1L, "Antigo", "Autor A", "2001", "Ficção", "imagem1.jpg");
+        Livro request = new Livro(1L, "Antigo", "Autor A", "2001", "Ficção", "imagem1.jpg");
         Livro updatedBook = new Livro(1L, "Novo", "Autor B", "2023", "Drama", "imagem2.jpg");
 
-        when(repository.findById(1L)).thenReturn(Optional.of(existingBook));
+        when(repository.findById(1L)).thenReturn(Optional.of(request));
         when(repository.save(any(Livro.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         Livro result = service.update(updatedBook);
@@ -43,7 +43,7 @@ class LivroServiceTest {
         assertEquals("imagem2.jpg", result.getImagem());
 
         verify(repository).findById(1L);
-        verify(repository).save(existingBook);
+        verify(repository).save(request);
     }
 
     @Test

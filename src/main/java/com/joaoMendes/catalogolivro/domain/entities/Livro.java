@@ -7,15 +7,16 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
-
 @Entity
 @Table(name = "tb_livro")
 public class Livro implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,5 +44,11 @@ public class Livro implements Serializable {
     @JsonProperty("imagem")
     private String imagem;
 
+    public void updateFrom(Livro source) {
+        this.nome = source.getNome();
+        this.autor = source.getAutor();
+        this.ano = source.getAno();
+        this.genero = source.getGenero();
+        this.imagem = source.getImagem();
+    }
 }
-

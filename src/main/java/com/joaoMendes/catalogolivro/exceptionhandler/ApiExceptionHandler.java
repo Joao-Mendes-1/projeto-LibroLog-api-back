@@ -10,6 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @RestControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -20,14 +21,20 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(LivroNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleLivroNotFound(LivroNotFoundException ex, WebRequest request) {
-        ApiErrorResponse response = new ApiErrorResponse();
-        response.setStatus(HttpStatus.NOT_FOUND.value());
-        response.setDateTime(OffsetDateTime.now());
-        response.setMessage(ex.getMessage());
+    public ResponseEntity<Object> handleLivroNotFound(LivroNotFoundException ex) {
 
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        ApiErrorResponse body = new ApiErrorResponse(
+                ex.getMessage(),
+                List.of(HttpStatus.NOT_FOUND.name())  // sempre ONE error
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(body);
     }
+
+
+
 
 
 }

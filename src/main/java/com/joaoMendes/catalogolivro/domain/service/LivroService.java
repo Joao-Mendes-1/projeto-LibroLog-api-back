@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 
 import java.util.List;
-import java.util.Optional;
 @Service
 public class LivroService {
 
@@ -30,23 +29,13 @@ public class LivroService {
     }
 
     public Livro update(Livro obj) {
-        Optional<Livro> optionalLivro = repository.findById(obj.getId());
-        if (optionalLivro.isEmpty()) {
-            throw new LivroNotFoundException(obj.getId());
-        }
+        Livro livroExistente = repository.findById(obj.getId())
+                .orElseThrow(() -> new LivroNotFoundException(obj.getId()));
 
-        Livro livroExistente = optionalLivro.get();
-        updateLivro(livroExistente, obj);
+        livroExistente.updateFrom(obj);
         return repository.save(livroExistente);
     }
 
-    private void updateLivro(Livro livroExistente, Livro obj) {
-        livroExistente.setAno(obj.getAno());
-        livroExistente.setNome(obj.getNome());
-        livroExistente.setGenero(obj.getGenero());
-        livroExistente.setAutor(obj.getAutor());
-        livroExistente.setImagem(obj.getImagem());
-    }
 
     public List<String> getGeneros() {
         return repository.findAll().stream()
