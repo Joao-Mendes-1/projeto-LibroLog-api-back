@@ -15,9 +15,9 @@ public class ApiErrorResponse {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime timestamp;
 
-    public ApiErrorResponse(String message, List<String> errors, LocalDateTime timestamp) {
+    public ApiErrorResponse(String mensagem, List<String> erros, LocalDateTime timestamp) {
         this.mensagem = mensagem;
-        this.erros = errors;
+        this.erros = erros;
         this.timestamp = timestamp;
     }
 }
