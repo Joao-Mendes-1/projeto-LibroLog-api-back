@@ -37,17 +37,18 @@ public class LivroController {
         return ResponseEntity.noContent().build();
     }
 
+
     @GetMapping("{id}")
     public ResponseEntity<LivroDetailResponse> getId(@PathVariable Long id) {
 
-        LivroDetailResponse response = livroService.getId(id);
+        LivroDetailResponse response = livroService.getById(id);
 
         return ResponseEntity.ok(response);
     }
 
     @GetMapping
     public ResponseEntity<List<LivroSumarioResponse>> getAll() {
-        List<LivroSumarioResponse> response = livroService.getAll();
+        List<LivroSumarioResponse> response = livroService.getAllSumario();
         return ResponseEntity.ok(response);
     }
 
@@ -65,13 +66,12 @@ public class LivroController {
     }
 
     @GetMapping("/filtro")
-    public ResponseEntity<List<LivroSumarioResponse>> filterByGenero(
-            @RequestParam(value = "genero", required = false) String genero) {
+    public ResponseEntity<List<LivroSumarioResponse>> filterByGenero(@RequestParam(value = "genero", required = false) String genero) {
 
         LivroFiltroRequest filtro = new LivroFiltroRequest();
         filtro.setGenero(genero);
 
-        List<LivroSumarioResponse> response = livroService.filterByGenero(filtro);
+        List<LivroSumarioResponse> response = livroService.getSumarioByGenero(filtro);
         return ResponseEntity.ok(response);
     }
 

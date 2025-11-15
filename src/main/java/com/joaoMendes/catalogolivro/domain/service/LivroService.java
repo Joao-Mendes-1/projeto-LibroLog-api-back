@@ -9,47 +9,52 @@ import com.joaoMendes.catalogolivro.dto.response.LivroDetailResponse;
 import com.joaoMendes.catalogolivro.dto.response.LivroResponseGenero;
 import com.joaoMendes.catalogolivro.dto.response.LivroSumarioResponse;
 import com.joaoMendes.catalogolivro.mapper.LivroMapper;
+import com.joaoMendes.catalogolivro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class LivroService {
 
     @Autowired
     private LivroRepository repository;
+
     @Autowired
     private LivroMapper mapper;
 
     public LivroDetailResponse create(LivroRequest request) {
-
         Livro livro = mapper.toEntity(request);
-
         Livro saved = repository.save(livro);
-
         return mapper.toDetailResponse(saved);
     }
 
     public void delete(Long id){
-        repository.deleteById(id);
+        Livro livro = repository.findById(id)
+                .orElseThrow(() -> new LivroNotFoundException(id));
+        repository.delete(livro);
     }
 
-    public List<LivroSumarioResponse> getAll() {
+    public LivroDetailResponse getById(Long id) {
+        Livro livro = repository.findById(id)
+                .orElseThrow(() -> new LivroNotFoundException(id));
+        return mapper.toDetailResponse(livro);
+    }
+
+    public List<LivroSumarioResponse> getAllSumario() {
         List<Livro> livros = repository.findAll();
         return mapper.toSumarioResponseList(livros);
     }
 
     public LivroDetailResponse update(Long id, LivroRequest request) {
-
         Livro livroExistente = repository.findById(id)
                 .orElseThrow(() -> new LivroNotFoundException(id));
 
         Livro livroAtualizado = mapper.toEntity(request);
-
         livroExistente.updateFrom(livroAtualizado);
 
         Livro saved = repository.save(livroExistente);
-
         return mapper.toDetailResponse(saved);
     }
 
@@ -58,24 +63,16 @@ public class LivroService {
         return mapper.toGeneroResponseList(livros);
     }
 
-    public LivroDetailResponse getId(Long id) {
-        Livro livro = repository.findById(id)
-                .orElseThrow(() -> new LivroNotFoundException(id));
+    public List<LivroSumarioResponse> getSumarioByGenero(LivroFiltroRequest filtro) {
+        if (filtro == null) filtro = new LivroFiltroRequest();
 
-        return mapper.toDetailResponse(livro);
-    }
+        String genero = StringUtils.cleanInput(filtro.getGenero());
 
-    public List<LivroSumarioResponse> filterByGenero(LivroFiltroRequest filtro) {
-
-        List<Livro> livros;
-
-        if (filtro.getGenero() == null || filtro.getGenero().isEmpty()) {
-            livros = repository.findAll();
-        } else {
-            livros = repository.findByGenero(filtro.getGenero());
+        if (genero == null || genero.isEmpty()) {
+            return mapper.toSumarioResponseList(repository.findAll());
         }
 
+        List<Livro> livros = repository.findByGeneroContainingIgnoreCase(genero);
         return mapper.toSumarioResponseList(livros);
     }
-
 }

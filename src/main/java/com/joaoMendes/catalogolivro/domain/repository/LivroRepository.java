@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface LivroRepository extends JpaRepository<Livro,Long> {
 
-    List<Livro> findByGenero(String genero);
+    List<Livro> findByGeneroContainingIgnoreCase(String genero);
+
 
 }

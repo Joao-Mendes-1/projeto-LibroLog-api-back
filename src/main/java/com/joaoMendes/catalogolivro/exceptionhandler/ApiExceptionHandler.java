@@ -42,9 +42,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
-    @ExceptionHandler(DomainException.class)
-    public ResponseEntity<String> capture(DomainException e){
-        return ResponseEntity.badRequest().body(e.getMessage());
+    public ResponseEntity<ApiErrorResponse> capture(DomainException e){
+        ApiErrorResponse body = new ApiErrorResponse(
+                e.getMessage(),
+                List.of("DOMAIN_ERROR"),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
     @ExceptionHandler(LivroNotFoundException.class)
@@ -66,7 +70,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         ApiErrorResponse body = new ApiErrorResponse(
                 "Erro ao salvar dados no banco de dados.",
-                List.of("Violação de integridade — dados inválidos ou conflito com restrições."),
+                List.of("DATA_INTEGRITY_VIOLATION"),
                 LocalDateTime.now()
         );
 
