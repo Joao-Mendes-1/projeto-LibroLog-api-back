@@ -19,7 +19,7 @@ public class LivroDetailResponse {
     private String autor;
 
     @JsonProperty("ano")
-    private String ano;
+    private Integer ano;
 
     @JsonProperty("genero")
     private String genero;

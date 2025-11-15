@@ -1,13 +1,11 @@
 package com.joaoMendes.catalogolivro.controller;
 
-import com.joaoMendes.catalogolivro.mapper.LivroMapper;
 import com.joaoMendes.catalogolivro.dto.request.LivroFiltroRequest;
 import com.joaoMendes.catalogolivro.dto.request.LivroRequest;
 import com.joaoMendes.catalogolivro.dto.response.LivroResponseGenero;
 import com.joaoMendes.catalogolivro.dto.response.LivroSumarioResponse;
 import com.joaoMendes.catalogolivro.dto.response.LivroDetailResponse;
 import com.joaoMendes.catalogolivro.domain.service.LivroService;
-import com.joaoMendes.catalogolivro.domain.entities.Livro;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,29 +15,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/livros")
+@RequestMapping(value = "livros")
 public class LivroController {
 
     @Autowired
     private LivroService livroService;
 
-    @Autowired
-    private LivroMapper mapper;
-
     @PostMapping
     public ResponseEntity<LivroDetailResponse> create(@Valid @RequestBody LivroRequest request) {
 
-        Livro livro = mapper.toEntity(request);
-
-        Livro savedLivro = livroService.create(livro);
-
-        LivroDetailResponse response = mapper.toDetailResponse(savedLivro);
+        LivroDetailResponse response = livroService.create(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
 
         livroService.delete(id);
@@ -47,64 +37,42 @@ public class LivroController {
         return ResponseEntity.noContent().build();
     }
 
-
-    @GetMapping(value = "/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<LivroDetailResponse> getId(@PathVariable Long id) {
-        Livro livro = livroService.getId(id);
 
-        LivroDetailResponse response = mapper.toDetailResponse(livro);
+        LivroDetailResponse response = livroService.getId(id);
 
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok(response);
     }
-
 
     @GetMapping
     public ResponseEntity<List<LivroSumarioResponse>> getAll() {
-        List<Livro> livros = livroService.getAll();
-
-        List<LivroSumarioResponse> response = mapper.toSumarioResponseList(livros);
-
-        return ResponseEntity.ok().body(response);
+        List<LivroSumarioResponse> response = livroService.getAll();
+        return ResponseEntity.ok(response);
     }
 
-
-    @PutMapping(value = "/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<LivroDetailResponse> update(@PathVariable Long id, @RequestBody @Valid LivroRequest request) {
 
-        Livro livro = mapper.toEntity(request);
-        livro.setId(id);
-        Livro updatedLivro = livroService.update(livro);
-
-        LivroDetailResponse response = mapper.toDetailResponse(updatedLivro);
-
-        return ResponseEntity.ok().body(response);
+        LivroDetailResponse response = livroService.update(id, request);
+        return ResponseEntity.ok(response);
     }
 
-
-    @GetMapping(value = "/generos")
+    @GetMapping("generos")
     public ResponseEntity<List<LivroResponseGenero>> getGeneros() {
-        List<Livro> livros = livroService.getAll();
-
-        List<LivroResponseGenero> response = mapper.toGeneroResponseList(livros);
-
-        return ResponseEntity.ok().body(response);
+        List<LivroResponseGenero> response = livroService.getGeneros();
+        return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/filtro")
+    public ResponseEntity<List<LivroSumarioResponse>> filterByGenero(
+            @RequestParam(value = "genero", required = false) String genero) {
 
-    @GetMapping(value = "/filtro")
-    public ResponseEntity<List<LivroSumarioResponse>> filterByGenero(@RequestParam(value = "genero", required = false) String genero) {
+        LivroFiltroRequest filtro = new LivroFiltroRequest();
+        filtro.setGenero(genero);
 
-        LivroFiltroRequest filtroRequest = new LivroFiltroRequest();
-        filtroRequest.setGenero(genero);
-
-
-        List<Livro> livrosFiltrados = livroService.filterByGenero(filtroRequest);
-
-
-        List<LivroSumarioResponse> response = mapper.toSumarioResponseList(livrosFiltrados);
-
-
-        return ResponseEntity.ok().body(response);
+        List<LivroSumarioResponse> response = livroService.filterByGenero(filtro);
+        return ResponseEntity.ok(response);
     }
 
 }
